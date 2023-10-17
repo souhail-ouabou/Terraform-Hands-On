@@ -14,30 +14,13 @@
 
     aws eks update-kubeconfig --name myapp-eks-cluster --region eu-west-2
 
-### verify
+### verify 
 
-    kubectl get nodes
+    kubectl get storageclass 
 
-### apply configuration with variables
+    kubectl apply -f ebs-example
 
-    terraform apply -var-file terraform-dev.tfvars
+    kubectl get pvc 
 
-### destroy a single resource
+You should see **Bound** state after that
 
-    terraform destroy -target aws_vpc.myapp-vpc
-
-### destroy everything from tf files
-
-    terraform destroy
-
-### show resources and components from current state
-
-    terraform state list
-
-### show current state of a specific resource/data
-
-    terraform state show aws_vpc.myapp-vpc    
-
-### set avail_zone as custom tf environment variable - before apply
-
-    export TF_VAR_avail_zone="eu-west-3a"
